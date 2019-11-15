@@ -11,8 +11,8 @@ module alu(Y, Cout, S, A, B);
     begin
         Cout = 0;
         case(S)
-        4'd0:   {Cout, Y} = A + B;  // Addition
-        4'd1:   Y = A - B;          // Subtraction
+        4'd0:   {Cout, Y} = A + B;  // Add
+        4'd1:   Y = A - B;          // Subtract
         4'd2:   {Cout, Y} = A << 1; // Shift L
         4'd3:   Y = A >> 1;         // Shift R
         4'd4:   Y = (A << 1) | (A >> ~1); // Rotate L

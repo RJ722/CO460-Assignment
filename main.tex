@@ -16,14 +16,14 @@
 
 \maketitle
 
-\section{5-bit ALU}
+\section{Question 1 - 5-bit ALU}
 
 \subsection{Question}
 Design a 5 bit ALU, which can perform following operations (use carry select
 adder).
 
 \begin{multicols}{2}
-  \begin{enumerate}[i]
+  \begin{enumerate}[i)]
       \item Arithmetic Addition
       \item Arithmetic Subtraction
       \item Logical Shift Left
@@ -134,6 +134,56 @@ The output (dumped in \texttt{alu.vcd}) file can be visualized using
   \includegraphics[width=\columnwidth]{img/alu.png}
   \caption{\texttt{alu.vcd} visualized in ``gtkwave".}
   \label{fig:alu}
+\end{figure}
+
+\section{Question 2}
+\subsection{Objective}
+Design a system to implement a Boolean function, $ F(A, B, C, D) = \sum{(0, 1,
+2, 4, 5, 7, 9, 11)} $, which gives the output only when a sequence of 11001 is
+received by input x otherwise the output is in High Impedance (\texttt{z}).
+
+\subsection{Verilog Code}
+\lstinputlisting[numbers=left, language=verilog]{trig_func.v}
+
+\subsection{Test Bench}
+\lstinputlisting[numbers=left, language=verilog]{trig_func_tb.v}
+
+\subsection{Results}
+
+The code when compiled through \texttt{iverilog}, gave the following results:
+
+\begin{verbatim}
+{A, B, C, D} = 0000, flag = 00000, Y = z
+{A, B, C, D} = 0000, flag = zzzzz, Y = z
+{A, B, C, D} = 0000, flag = xxxxx, Y = z
+{A, B, C, D} = 0000, flag = 11111, Y = z
+{A, B, C, D} = 0000, flag = 11001, Y = 1
+{A, B, C, D} = 0001, flag = 11001, Y = 1
+{A, B, C, D} = 0010, flag = 11001, Y = 1
+{A, B, C, D} = 0011, flag = 11001, Y = 0
+{A, B, C, D} = 0100, flag = 11001, Y = 1
+{A, B, C, D} = 0101, flag = 11001, Y = 1
+{A, B, C, D} = 0110, flag = 11001, Y = 0
+{A, B, C, D} = 0111, flag = 11001, Y = 1
+{A, B, C, D} = 1000, flag = 11001, Y = 0
+{A, B, C, D} = 1001, flag = 11001, Y = 1
+{A, B, C, D} = 1010, flag = 11001, Y = 0
+{A, B, C, D} = 1011, flag = 11001, Y = 1
+{A, B, C, D} = 1100, flag = 11001, Y = 0
+{A, B, C, D} = 1101, flag = 11001, Y = 0
+{A, B, C, D} = 1110, flag = 11001, Y = 0
+{A, B, C, D} = 1111, flag = 11001, Y = 0
+\end{verbatim}
+
+\subsubsection{Visualizing Output}
+Akin to the previous section, the output was visualized using
+\textit{``gtkwave"}, which produces the following results:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\columnwidth]{img/trig_func.png}
+  \caption{\texttt{trig\_func.vcd} visualized in ``gtkwave".}
+  % \label{fig:trig\_func\_result}
 \end{figure}
 
 \end{document}
